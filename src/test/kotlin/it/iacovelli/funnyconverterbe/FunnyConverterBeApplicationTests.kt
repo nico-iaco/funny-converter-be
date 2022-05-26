@@ -6,16 +6,27 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
+/**
+ * Tests class for unit test
+ * @author Nicola Iacovelli
+ * @version 1.0
+ */
 @SpringBootTest
 class FunnyConverterBeApplicationTests {
 
     @Autowired
     lateinit var converterService: ConverterService
 
+    /**
+     * Tests if the application starts
+     */
     @Test
     fun contextLoads() {
     }
 
+    /**
+     * Tests if the conversion meter -> olive is done correctly
+     */
     @Test
     fun checkCorrectOliveConversion() {
         val request = ConvertRequest(
@@ -27,6 +38,9 @@ class FunnyConverterBeApplicationTests {
         assert(convertedValue == 66.07142857142857)
     }
 
+    /**
+     * Tests if the conversion olive -> meter is done correctly
+     */
     @Test
     fun checkCorrectMeterConversion() {
         val request = ConvertRequest(
@@ -38,6 +52,9 @@ class FunnyConverterBeApplicationTests {
         assert(convertedValue == 1.85)
     }
 
+    /**
+     * Tests if the conversion meter -> meter is done correctly
+     */
     @Test
     fun checkSameUnitConversion() {
         val request = ConvertRequest(
@@ -49,6 +66,9 @@ class FunnyConverterBeApplicationTests {
         assert(convertedValue == 1.85)
     }
 
+    /**
+     * Tests if the conversion meter -> millimeter is done correctly
+     */
     @Test
     fun checkCorrectMillimeterConversion() {
         val request = ConvertRequest(
