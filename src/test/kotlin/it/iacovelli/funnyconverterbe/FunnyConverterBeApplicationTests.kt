@@ -17,6 +17,12 @@ class FunnyConverterBeApplicationTests {
     @Autowired
     lateinit var converterService: ConverterService
 
+    val meter = "meter"
+
+    val olive = "olive"
+
+    val millimeter = "millimeter"
+
     /**
      * Tests if the application starts
      */
@@ -30,8 +36,8 @@ class FunnyConverterBeApplicationTests {
     @Test
     fun checkCorrectOliveConversion() {
         val request = ConvertRequest(
-            from = "meter",
-            to = "olive",
+            from = meter,
+            to = olive,
             value = 1.85
         )
         val convertedValue = converterService.convert(request.from, request.to, request.value)
@@ -44,8 +50,8 @@ class FunnyConverterBeApplicationTests {
     @Test
     fun checkCorrectMeterConversion() {
         val request = ConvertRequest(
-            from = "olive",
-            to = "meter",
+            from = olive,
+            to = meter,
             value = 66.07142857142857
         )
         val convertedValue = converterService.convert(request.from, request.to, request.value)
@@ -58,8 +64,8 @@ class FunnyConverterBeApplicationTests {
     @Test
     fun checkSameUnitConversion() {
         val request = ConvertRequest(
-            from = "meter",
-            to = "meter",
+            from = meter,
+            to = meter,
             value = 1.85
         )
         val convertedValue = converterService.convert(request.from, request.to, request.value)
@@ -72,8 +78,8 @@ class FunnyConverterBeApplicationTests {
     @Test
     fun checkCorrectMillimeterConversion() {
         val request = ConvertRequest(
-            from = "meter",
-            to = "millimeter",
+            from = meter,
+            to = millimeter,
             value = 1.85
         )
         val convertedValue = converterService.convert(request.from, request.to, request.value)
