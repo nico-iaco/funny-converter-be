@@ -30,7 +30,7 @@ class ConverterController(val converterService: ConverterService) {
     fun convert(@RequestBody request: ConvertRequest): BaseResponse<Double> {
         log.debug("POST request /convert with body: {}", request)
         val value = converterService.convert(request.from, request.to, request.value)
-        return BaseResponse(HttpStatus.OK, value, "")
+        return BaseResponse(HttpStatus.OK.value(), value, "")
     }
 
 }
