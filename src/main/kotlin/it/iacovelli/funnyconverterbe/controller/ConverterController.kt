@@ -3,7 +3,6 @@ package it.iacovelli.funnyconverterbe.controller
 import it.iacovelli.funnyconverterbe.model.BaseResponse
 import it.iacovelli.funnyconverterbe.model.ConvertRequest
 import it.iacovelli.funnyconverterbe.service.ConverterService
-import lombok.extern.slf4j.Slf4j
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PostMapping
