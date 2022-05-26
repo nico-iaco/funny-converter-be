@@ -1,0 +1,16 @@
+spring:
+    devtools:
+        add-properties: false
+        livereload:
+            enabled: false
+it:
+    iacovelli:
+        conversion-factor: '{
+            "olive": 28.0,
+            "meter": 1000.0,
+            "centimeter": 10.0,
+            "millimeter": 1.0
+        }'
+logging:
+    level:
+        it.iacovelli.funnyconverterbe: debug
