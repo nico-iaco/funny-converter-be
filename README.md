@@ -6,12 +6,12 @@ ___
 This is a simple application made for fun which allow users to convert from a unit to another unit even a strange unit like olives🫒.
 
 ### Technology and framework used 💻🧪
-- Kotlin
-- Spring boot
-- Spring native
-- Docker
+-  Kotlin
+-  Spring boot
+-  Spring native
+-  Docker
 
 ### Roadmap 🚀🏁
-- [x] Write the application ✍️
-- [ ] Realize the infrastructure with terraform 🏗️
-- [ ] Make automatic build with Google Cloud Build 🔁
+-  [x] Write the application ✍️
+-  [ ] Realize the infrastructure with terraform 🏗️
+-  [ ] Make automatic build with Google Cloud Build 🔁
