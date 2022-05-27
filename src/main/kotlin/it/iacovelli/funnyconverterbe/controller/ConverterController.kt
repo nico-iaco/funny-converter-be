@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
  * @version 1.0
  */
 @RestController("/")
-class ConverterController(val converterService: ConverterService) {
+class ConverterController(val converterService: ConverterService): BaseController() {
 
     val log: Logger = LoggerFactory.getLogger(this.javaClass)
 

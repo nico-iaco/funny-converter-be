@@ -1,8 +1,10 @@
 package it.iacovelli.funnyconverterbe
 
+import it.iacovelli.funnyconverterbe.exception.UnitConversionException
 import it.iacovelli.funnyconverterbe.model.ConvertRequest
 import it.iacovelli.funnyconverterbe.service.ConverterService
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -22,6 +24,8 @@ class FunnyConverterBeApplicationTests {
     val olive = "olive"
 
     val millimeter = "millimeter"
+
+    val wrongUnit = "fakeUnit"
 
     /**
      * Tests if the application starts
@@ -84,6 +88,16 @@ class FunnyConverterBeApplicationTests {
         )
         val convertedValue = converterService.convert(request.from, request.to, request.value)
         assert(convertedValue == 1850.0)
+    }
+
+    @Test
+    fun checkExceptionThrownIfUnitIsIncorrect() {
+        val request = ConvertRequest(
+            from = wrongUnit,
+            to = millimeter,
+            value = 23.7
+        )
+        assertThrows<UnitConversionException> { converterService.convert(request.from, request.to, request.value) }
     }
 
 }

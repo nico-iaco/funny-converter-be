@@ -2,6 +2,7 @@ package it.iacovelli.funnyconverterbe.service.impl
 
 import it.iacovelli.funnyconverterbe.config.ConversionConfig
 import it.iacovelli.funnyconverterbe.service.ConverterService
+import it.iacovelli.funnyconverterbe.service.RemoteConverterService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -12,9 +13,11 @@ import org.springframework.stereotype.Service
  * @version 1.0
  */
 @Service
-class ConverterServiceImpl(val conversionConfig: ConversionConfig) : ConverterService {
+class ConverterServiceImpl(val conversionConfig: ConversionConfig, val remoteConverterService: RemoteConverterService) : ConverterService {
 
-    val log: Logger = LoggerFactory.getLogger(this.javaClass)
+    private val log: Logger = LoggerFactory.getLogger(this.javaClass)
+
+    private val millimeterUnit = "millimeter"
 
     /**
      * Implementation method used to convert value with the following formulae (value * fromFactor) / toFactor
@@ -24,9 +27,24 @@ class ConverterServiceImpl(val conversionConfig: ConversionConfig) : ConverterSe
      * @return the converted value
      */
     override fun convert(from: String, to: String, value: Double): Double {
-        val fromFactor = conversionConfig.conversionFactorsMap[from]!!
-        val toFactor = conversionConfig.conversionFactorsMap[to]!!
-        val resultValue = (value * fromFactor) / toFactor
+        var fromFactor = conversionConfig.conversionFactorsMap[from]
+        var toFactor = conversionConfig.conversionFactorsMap[to]
+        var v = value
+        if (fromFactor == null && toFactor == null) {
+            v = remoteConverterService.convert(from, to, value)
+            fromFactor = 1.0
+            toFactor = 1.0
+        } else if (fromFactor == null) {
+            v = remoteConverterService.convert(from, millimeterUnit, value)
+            fromFactor = 1.0
+        } else if (toFactor == null) {
+            v = (v * fromFactor)
+            v = remoteConverterService.convert(millimeterUnit, to, v)
+            fromFactor = 1.0
+            toFactor = 1.0
+        }
+
+        val resultValue = (v * fromFactor) / toFactor!!
         log.debug("{} {} is equal to {} {}", value, from, resultValue, to)
         return resultValue
     }
