@@ -9,3 +9,5 @@ steps:
 images:
     - 'us-central1-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:$SHORT_SHA'
     - 'us-central1-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}'
+options:
+    machineType: E2_HIGHCPU_8
