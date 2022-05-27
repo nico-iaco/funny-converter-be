@@ -90,6 +90,9 @@ class FunnyConverterBeApplicationTests {
         assert(convertedValue == 1850.0)
     }
 
+    /**
+     * Tests if an incorrect unit throws an exception
+     */
     @Test
     fun checkExceptionThrownIfUnitIsIncorrect() {
         val request = ConvertRequest(

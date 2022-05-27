@@ -15,4 +15,6 @@ interface ConverterService {
      */
     fun convert(from: String, to: String, value: Double): Double
 
+    fun getAvailableUnits(): Set<String>
+
 }
