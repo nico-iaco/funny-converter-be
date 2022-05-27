@@ -11,6 +11,8 @@ it:
             "centimeter": 10.0,
             "millimeter": 1.0
         }'
+        remote-api:
+            conversion-url: "https://java-unit-conversion.herokuapp.com/api/length/"
 logging:
     level:
         it.iacovelli.funnyconverterbe: debug
