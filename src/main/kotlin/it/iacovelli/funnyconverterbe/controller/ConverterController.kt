@@ -6,6 +6,7 @@ import it.iacovelli.funnyconverterbe.service.ConverterService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -31,6 +32,17 @@ class ConverterController(val converterService: ConverterService): BaseControlle
         log.debug("POST request /convert with body: {}", request)
         val value = converterService.convert(request.from, request.to, request.value)
         return BaseResponse(HttpStatus.OK.value(), value, "")
+    }
+
+    /**
+     * Api exposed as GET to retrieve the list of available units
+     * @return all official units available for conversion
+     */
+    @GetMapping("/unit")
+    fun getAvailableUnits(): BaseResponse<Set<String>> {
+        log.debug("GET request /unit ")
+        val availableUnits = converterService.getAvailableUnits()
+        return BaseResponse(HttpStatus.OK.value(), availableUnits, "")
     }
 
 }

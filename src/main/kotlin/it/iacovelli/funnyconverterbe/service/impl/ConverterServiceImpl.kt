@@ -48,4 +48,8 @@ class ConverterServiceImpl(val conversionConfig: ConversionConfig, val remoteCon
         log.debug("{} {} is equal to {} {}", value, from, resultValue, to)
         return resultValue
     }
+
+    override fun getAvailableUnits(): Set<String> {
+        return conversionConfig.conversionFactorsMap.keys
+    }
 }
