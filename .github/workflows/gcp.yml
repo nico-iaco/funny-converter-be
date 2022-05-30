@@ -8,7 +8,7 @@ jobs:
         name: Build and Push to GCP
         runs-on: ubuntu-latest
         env:
-            IMAGE_NAME: funny-converter
+            IMAGE_NAME: funny-converter-be
             PROJECT_ID: funny-converter
             LOCATION: us-central1-docker.pkg.dev
             REPOSITORY: funny-converter-ar
@@ -18,7 +18,7 @@ jobs:
             -   uses: benjlevesque/short-sha@v1.2
                 id: short-sha
                 with:
-                    length: 8
+                    length: 7
             - uses: google-github-actions/setup-gcloud@v0
               with:
                   service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
