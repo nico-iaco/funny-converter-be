@@ -34,37 +34,7 @@ resource "google_project_service" "artifact_registry_api" {
   disable_on_destroy = true
 }
 
-resource "google_project_service" "cloud_build_api" {
-  service = "cloudbuild.googleapis.com"
 
-  disable_on_destroy = true
-}
-
-resource "google_cloudbuild_trigger" "funny-converter-be-image-trigger" {
-  name = "funny-converter-be-image-trigger"
-  description = "Trigger used to build image and push it to artifact registry"
-  github {
-    owner = "nico-iaco"
-    name = "funny-converter-be"
-    push {
-      branch = "main"
-    }
-  }
-  ignored_files = [
-    "terraform/**",
-    "README.md",
-    ".github/**",
-    ".gitignore"
-  ]
-
-  substitutions = {
-    _REPOSITORY = google_artifact_registry_repository.funny-converter-ar.name
-    _IMAGE = "funny-converter-be"
-  }
-
-  filename = "cloudbuild.yaml"
-  depends_on = [google_project_service.cloud_build_api]
-}
 
 resource "google_artifact_registry_repository" "funny-converter-ar" {
   provider = google-beta

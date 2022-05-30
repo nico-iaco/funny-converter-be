@@ -14,5 +14,5 @@ This is a simple application made for fun which allow users to convert from a un
 
 ### Roadmap 🚀🏁
 -  [x] Write the application ✍️
--  [ ] Realize the infrastructure with terraform 🏗️
--  [ ] Make automatic build with Google Cloud Build 🔁
+-  [X] Realize the infrastructure with terraform 🏗️
+-  [ ] Make automatic build with GitHub Actions 🔁
