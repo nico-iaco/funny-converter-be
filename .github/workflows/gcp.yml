@@ -34,8 +34,6 @@ jobs:
             - name: Push Docker Image to Artifact Registry
               run: |-
                   docker tag $IMAGE_NAME:latest $LOCATION/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME:latest
-                  docker tag $IMAGE_NAME:latest $LOCATION/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME:$SHORT_SHA
+                  docker tag $IMAGE_NAME:latest $LOCATION/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME:$SHA
                   docker push $LOCATION/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME:latest
-                  docker push $LOCATION/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME:$SHORT_SHA
-              env:
-                  SHORT_SHA: ${{ env.SHORT_SHA}}
+                  docker push $LOCATION/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME:$SHA
